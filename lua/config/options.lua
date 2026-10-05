@@ -17,7 +17,11 @@ o.cursorlineopt = "number" -- highlight the line number only
 o.tabstop = 4
 o.shiftwidth = 4
 o.expandtab = false -- 42 norm wants real tabs
-o.smartindent = true
+-- no auto-indent at all: tabs are typed by hand, like in plain vim
+o.autoindent = false
+o.smartindent = false
+o.cindent = false
+vim.cmd("filetype indent off")
 o.wrap = false
 o.termguicolors = true
 o.scrolloff = 8
