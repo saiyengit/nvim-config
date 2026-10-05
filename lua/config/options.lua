@@ -14,11 +14,11 @@ o.undofile = true
 
 o.cursorline = true
 o.cursorlineopt = "number" -- highlight the line number only
-o.tabstop = 4
-o.shiftwidth = 4
+o.tabstop = 8
+o.shiftwidth = 8
 o.expandtab = false -- 42 norm wants real tabs
--- indentation like plain vim: keep the line's indent, C uses cindent
-o.autoindent = true
+-- indentation identical to plain vim: tabs shown 8 wide, C uses cindent
+o.autoindent = false
 o.smartindent = false
 o.softtabstop = 0 -- Tab key inserts a real tab
 o.wrap = false
