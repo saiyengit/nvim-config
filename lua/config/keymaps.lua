@@ -44,3 +44,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   group = vim.api.nvim_create_augroup("custom_highlights", { clear = true }),
   callback = apply,
 })
+
+-- Ctrl+V in insert mode pastes the system clipboard, like in vim.
+-- <C-r><C-o> inserts it as-is, so auto-indent doesn't shift pasted code.
+vim.keymap.set("i", "<C-v>", "<C-r><C-o>+", { desc = "Paste system clipboard" })
