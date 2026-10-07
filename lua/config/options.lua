@@ -7,7 +7,7 @@ vim.g.loaded_netrwPlugin = 1
 local o = vim.opt
 
 o.number = true
-o.relativenumber = true
+o.relativenumber = false -- fixed line numbers, they don't shift when the cursor moves
 o.ignorecase = true
 o.smartcase = true
 o.undofile = true

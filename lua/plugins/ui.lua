@@ -7,6 +7,10 @@ return {
       require("tokyonight").setup({
         style = "night",
         transparent = true, -- see-through background
+        on_colors = function(colors)
+          colors.orange = "#ff5f5f" -- red instead of orange (numbers, constants...)
+          colors.blue = "#3b82f6" -- true blue instead of pastel blue (functions...)
+        end,
       })
       vim.cmd.colorscheme("tokyonight")
     end,
