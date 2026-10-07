@@ -35,9 +35,11 @@ o.splitbelow = true
 o.title = true
 o.titlestring = "%t"
 
--- diagnostics: error messages hidden by default (toggle with <leader>m),
--- the underline and the mark in the margin stay visible
+-- diagnostics: everything hidden by default (messages, underline, margin marks),
+-- <leader>m shows / hides it all
 vim.diagnostic.config({
   virtual_text = false,
+  underline = false,
+  signs = false,
   severity_sort = true,
 })
