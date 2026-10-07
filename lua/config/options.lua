@@ -35,8 +35,9 @@ o.splitbelow = true
 o.title = true
 o.titlestring = "%t"
 
--- diagnostics inline (virtual text is off by default since nvim 0.11)
+-- diagnostics: error messages hidden by default (toggle with <leader>m),
+-- the underline and the mark in the margin stay visible
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = false,
   severity_sort = true,
 })

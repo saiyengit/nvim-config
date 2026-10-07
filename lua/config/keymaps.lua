@@ -48,3 +48,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 -- Ctrl+V in insert mode pastes the system clipboard, like in vim.
 -- <C-r><C-o> inserts it as-is, so auto-indent doesn't shift pasted code.
 vim.keymap.set("i", "<C-v>", "<C-r><C-o>+", { desc = "Paste system clipboard" })
+
+-- show / hide the error messages at the end of the lines
+vim.keymap.set("n", "<leader>m", function()
+  local shown = vim.diagnostic.config().virtual_text
+  vim.diagnostic.config({ virtual_text = not shown })
+end, { desc = "Toggle error messages" })
