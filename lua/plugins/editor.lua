@@ -6,6 +6,13 @@ return {
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+      {
+        "<leader>fa",
+        function()
+          require("telescope.builtin").live_grep({ cwd = vim.fn.expand("~/42") })
+        end,
+        desc = "Live grep in all of ~/42",
+      },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
       { "<leader>fc", "<cmd>Telescope commands<cr>", desc = "Commands" },
