@@ -54,3 +54,7 @@ vim.keymap.set("n", "<leader>m", function()
   local show = not vim.diagnostic.config().virtual_text
   vim.diagnostic.config({ virtual_text = show, underline = show, signs = show })
 end, { desc = "Toggle errors" })
+
+-- Space y in visual mode: copy the selected lines to the system clipboard
+-- through wl-copy directly, so it works even if nvim's clipboard provider doesn't
+vim.keymap.set("x", "<leader>y", ":w !wl-copy<CR><CR>", { desc = "Copy selection to system clipboard", silent = true })
