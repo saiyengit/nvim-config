@@ -43,3 +43,4 @@ vim.diagnostic.config({
   signs = false,
   severity_sort = true,
 })
+vim.opt.autochdir = true
