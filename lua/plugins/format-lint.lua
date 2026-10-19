@@ -15,10 +15,14 @@ return {
           stdin = true,
         },
       },
-      format_on_save = {
-        timeout_ms = 2000,
-        lsp_format = "fallback",
-      },
+      -- skip headers: .h opens as cpp, so clangd's fallback would rewrite
+      -- structs/typedefs in LLVM style (brace on same line, 2 spaces)
+      format_on_save = function(bufnr)
+        if vim.api.nvim_buf_get_name(bufnr):match("%.h$") then
+          return
+        end
+        return { timeout_ms = 2000, lsp_format = "fallback" }
+      end,
     },
   },
 }
