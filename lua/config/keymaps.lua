@@ -58,3 +58,20 @@ end, { desc = "Toggle errors" })
 -- Space y in visual mode: copy the selected lines to the system clipboard
 -- through wl-copy directly, so it works even if nvim's clipboard provider doesn't
 vim.keymap.set("x", "<leader>y", ":w !wl-copy<CR><CR>", { desc = "Copy selection to system clipboard", silent = true })
+
+-- Space r: rename the word under the cursor everywhere in the file
+-- (whole word only: elem won't touch elem2 or ft_create_elem). No LSP needed.
+vim.keymap.set("n", "<leader>r", function()
+  local old = vim.fn.expand("<cword>")
+  if old == "" then
+    return
+  end
+  vim.ui.input({ prompt = "Renommer " .. old .. " en : " }, function(new)
+    if not new or new == "" then
+      return
+    end
+    local view = vim.fn.winsaveview()
+    vim.cmd("keeppatterns %s/\\V\\<" .. old .. "\\>/" .. new .. "/ge")
+    vim.fn.winrestview(view)
+  end)
+end, { desc = "Rename word in file" })
