@@ -61,3 +61,17 @@ vim.keymap.set("n", "<leader>to", function()
   local cmd = string.format("cd %s; exec ${SHELL:-/bin/sh} -i", vim.fn.shellescape(file_dir()))
   vim.fn.jobstart({ "kitty", "sh", "-c", cmd }, { detach = true })
 end, { desc = "Open kitty window in file's dir" })
+
+-- Same keys as mango, so the cluster (no mango) feels like home.
+-- At home mango grabs Alt+Q/H/L first, so these only fire where mango isn't running.
+--   Alt+Q        open / hide the terminal split (no need to type exit)
+--   Alt+H/Alt+L  go to the left / right split, also from inside the terminal
+vim.keymap.set("n", "<A-q>", toggle, { desc = "Toggle terminal split" })
+vim.keymap.set("t", "<A-q>", function()
+  vim.cmd("stopinsert")
+  toggle()
+end, { desc = "Toggle terminal split" })
+vim.keymap.set("n", "<A-h>", "<C-w>h", { desc = "Go to left window" })
+vim.keymap.set("n", "<A-l>", "<C-w>l", { desc = "Go to right window" })
+vim.keymap.set("t", "<A-h>", "<C-\\><C-n><C-w>h", { desc = "Go to left window" })
+vim.keymap.set("t", "<A-l>", "<C-\\><C-n><C-w>l", { desc = "Go to right window" })
