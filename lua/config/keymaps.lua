@@ -55,9 +55,14 @@ vim.keymap.set("n", "<leader>m", function()
   vim.diagnostic.config({ virtual_text = show, underline = show, signs = show })
 end, { desc = "Toggle errors" })
 
--- Space y in visual mode: copy the selected lines to the system clipboard
--- through wl-copy directly, so it works even if nvim's clipboard provider doesn't
-vim.keymap.set("x", "<leader>y", ":w !wl-copy<CR><CR>", { desc = "Copy selection to system clipboard", silent = true })
+-- Space y in visual mode: copy the selection to the system clipboard.
+-- At home: the selected lines go straight to wl-copy, so it works even if nvim's
+-- clipboard provider doesn't. Without wl-copy (cluster): "+y, through OSC 52.
+if vim.fn.executable("wl-copy") == 1 then
+  vim.keymap.set("x", "<leader>y", ":w !wl-copy<CR><CR>", { desc = "Copy selection to system clipboard", silent = true })
+else
+  vim.keymap.set("x", "<leader>y", '"+y', { desc = "Copy selection to system clipboard" })
+end
 
 -- Space r: rename the word under the cursor everywhere in the file
 -- (whole word only: elem won't touch elem2 or ft_create_elem). No LSP needed.

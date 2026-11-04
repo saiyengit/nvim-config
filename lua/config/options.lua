@@ -27,6 +27,19 @@ o.scrolloff = 8
 o.signcolumn = "yes"
 o.updatetime = 250
 o.clipboard = "" -- keep registers separate; use "+y / "+p explicitly
+-- No wl-copy / xclip / xsel (the 42 cluster, nothing installable without sudo):
+-- go through the terminal instead (OSC 52, which kitty supports), so "+y, "+p,
+-- Space y and Ctrl+V still reach the system clipboard. At home wl-copy exists,
+-- so nothing changes there.
+if vim.fn.executable("wl-copy") == 0 and vim.fn.executable("xclip") == 0
+    and vim.fn.executable("xsel") == 0 then
+  local osc52 = require("vim.ui.clipboard.osc52")
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+    paste = { ["+"] = osc52.paste("+"), ["*"] = osc52.paste("*") },
+  }
+end
 o.splitright = true
 o.splitbelow = true
 
