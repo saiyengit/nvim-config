@@ -10,8 +10,21 @@ return {
       },
       formatters = {
         -- 42 norm formatter: `pipx install c-formatter-42`
+        -- run with its own python, minus the parenthesize_return step:
+        -- no automatic ( ) around return values, everything else unchanged
         c_formatter_42 = {
-          command = "c_formatter_42",
+          command = function()
+            local exe = vim.fn.resolve(vim.fn.exepath("c_formatter_42"))
+            local python = vim.fn.fnamemodify(exe, ":h") .. "/python"
+            return vim.fn.executable(python) == 1 and python or "python3"
+          end,
+          args = {
+            "-E",
+            "-c",
+            "import sys, c_formatter_42.run as r\n"
+              .. "r.parenthesize_return = lambda content: content\n"
+              .. "print(r.run_all(sys.stdin.read()), end='')",
+          },
           stdin = true,
         },
       },
