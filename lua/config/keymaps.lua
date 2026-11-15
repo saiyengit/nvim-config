@@ -31,19 +31,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- brighter, more readable line numbers (fg only — keeps gutter transparent).
--- Re-applied on every :colorscheme so load order doesn't matter.
-local function apply()
-  vim.api.nvim_set_hl(0, "LineNr", { fg = "#73daca" })
-  vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#73daca" })
-  vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#73daca" })
-  vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#27a1b9", bold = true })
-end
-apply()
-vim.api.nvim_create_autocmd("ColorScheme", {
-  group = vim.api.nvim_create_augroup("custom_highlights", { clear = true }),
-  callback = apply,
-})
+-- line number colors: now in lua/plugins/ui.lua (photo palette, lua/config/palette.lua)
 
 -- Ctrl+V in insert mode pastes the system clipboard, like in vim.
 -- <C-r><C-o> inserts it as-is, so auto-indent doesn't shift pasted code.
