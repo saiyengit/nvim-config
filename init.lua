@@ -6,6 +6,7 @@
 --   lua/config/keymaps.lua    general + LSP keymaps, line number colors
 --   lua/config/terminal.lua   <leader>tt / <leader>to
 --   lua/config/compile.lua    <leader>gcc / <leader>gca (C)
+--   lua/config/fond.lua       fond d'écran derrière nvim (kitty)
 
 require("config.options")
 require("config.lazy")
@@ -15,3 +16,4 @@ require("config.keymaps")
 require("config.terminal")
 require("config.compile")
 require("config.indent")
+require("config.fond")
