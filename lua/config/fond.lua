@@ -10,7 +10,9 @@
 -- ~/.config/kitty/kitty.conf ; il faut ensuite ouvrir un NOUVEAU kitty.
 --
 -- L'image est dans le repo privé divers (ce repo-ci est public).
--- Pour la changer : remplace ~/42/divers/fond/fond.jpg.
+-- Pour la changer : remplace ~/42/divers/fond/fond.jpg, en prenant une image
+-- d'au moins 1920 px de large (plus petite, kitty l'agrandit : c'est flou).
+-- Assombrissement : background_tint dans kitty/fond.conf.
 
 local image = vim.fn.expand("~/42/divers/fond/fond.jpg")
 local snippet = vim.fn.stdpath("config") .. "/kitty/fond.conf"
